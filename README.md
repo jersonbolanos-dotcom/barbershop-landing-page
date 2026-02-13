@@ -34,3 +34,8 @@ Diseño limpio, profesional y optimizado para dispositivos móviles.
 
 Desarrollado por Jerson Bolaños  
 Frontend Developer en formación
+## 📸 Preview
+
+![Desktop](preview-desktop.png)
+![Desktop](preview-desktop1.png)
+![Mobile](preview-mobile.png)
