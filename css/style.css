@@ -1,0 +1,770 @@
+﻿/* Paleta principal: negro mate + dorado */
+:root {
+  --bg: #0e0e0e;
+  --surface: #171717;
+  --ink: #f3f0ea;
+  --muted: #b2aba0;
+  --brand: #c79a45;
+  --brand-dark: #e0bb77;
+  --line: #2b2b2b;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilo global y espacio inferior para evitar solape del boton flotante */
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background: radial-gradient(circle at top right, #222222 0%, #111111 34%, var(--bg) 100%);
+  color: var(--ink);
+  line-height: 1.6;
+  padding-bottom: 84px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 84px 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
+
+h1,
+h2 {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 4.2vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 3.4vw, 3rem);
+}
+
+.section__subtitle {
+  color: var(--muted);
+  margin: 0 0 28px;
+}
+
+/* Barra de urgencia para aumentar conversion */
+.urgency-bar {
+  border-bottom: 1px solid #3a2d19;
+  background: linear-gradient(90deg, #2b1f10, #3f2f17);
+}
+
+.urgency-bar__inner {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.urgency-bar p {
+  margin: 0;
+  color: #f6e8ce;
+  font-size: 0.92rem;
+}
+
+.urgency-bar a {
+  color: #191101;
+  background: #d5ab64;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+/* Header sticky con navegacion principal */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(199, 154, 69, 0.26);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  gap: 18px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.brand img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--brand);
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  color: var(--ink);
+  border: 0;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* Hero visual principal */
+.hero {
+  min-height: 76vh;
+  display: grid;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__bg,
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  background: linear-gradient(110deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.42));
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 72px 0;
+  max-width: 680px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #f6d7a3;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  margin: 0 0 20px;
+  color: #ececec;
+}
+
+.hero__location {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff5de;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Botones base reutilizables */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  min-height: 52px;
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+}
+
+.btn--primary {
+  background: var(--brand);
+  color: #101010;
+}
+
+.btn--primary:hover {
+  background: #d7ad63;
+}
+
+.btn--ghost {
+  border-color: #9e8a63;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Tarjetas base para contenido */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.45s ease;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.service-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #4d402b;
+}
+
+.service-meta strong {
+  color: var(--brand-dark);
+  font-size: 0.98rem;
+}
+
+.service-meta span {
+  color: #b4a586;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.service-btn {
+  display: inline-flex;
+  margin-top: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #1a1203;
+  background: #d5ab64;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+}
+
+.trust-grid {
+  margin-bottom: 18px;
+}
+
+.trust-card {
+  padding: 18px;
+}
+
+.trust-card h3 {
+  margin-bottom: 6px;
+}
+
+.trust-photos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.trust-photos img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.pricing-table {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pricing-row:last-child {
+  border-bottom: 0;
+}
+
+.pricing-row strong {
+  color: var(--brand-dark);
+}
+
+/* Franja CTA repetida entre secciones */
+.cta-band {
+  padding: 16px 0;
+  border-top: 1px solid #30230f;
+  border-bottom: 1px solid #30230f;
+  background: linear-gradient(90deg, #120f0a, #1f1710);
+}
+
+.cta-band__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.cta-band p {
+  margin: 0;
+  color: #eadfcb;
+  font-weight: 600;
+}
+
+.reviews-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reviews-ghost {
+  color: var(--ink);
+}
+
+/* Formulario de reservas adaptable */
+.reservation-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.reservation-form label {
+  display: grid;
+  gap: 8px;
+  color: #e9dfca;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.reservation-form input,
+.reservation-form select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #3a3a3a;
+  background: #101010;
+  color: #efebe2;
+}
+
+.reservation-form button {
+  grid-column: 1 / -1;
+}
+
+.form-message {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  grid-column: 1 / -1;
+}
+
+.form-message.error {
+  color: #ff8b8b;
+}
+
+.form-message.success {
+  color: #8ae9a0;
+}
+
+.reservation-form input.input-error,
+.reservation-form select.input-error {
+  border-color: #ff8b8b;
+}
+
+.btn.is-loading {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.quote p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.quote-head {
+  margin-bottom: 12px;
+}
+
+.quote-head img,
+.quote-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.quote-avatar {
+  display: grid;
+  place-items: center;
+  background: #1b1b1b;
+  color: #fff;
+  font-weight: 700;
+}
+
+.quote cite {
+  color: var(--ink);
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Grilla de galeria */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.gallery-item {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.gallery-item span {
+  display: inline-block;
+  margin-top: 8px;
+  color: #c7b79a;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.location-details {
+  margin-bottom: 18px;
+}
+
+.location-details p {
+  margin: 0 0 8px;
+}
+
+.location-details a {
+  margin-top: 8px;
+}
+
+.map-wrap {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.map-wrap iframe {
+  width: 100%;
+  height: 360px;
+  border: 0;
+}
+
+/* Boton flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
+  text-decoration: none;
+  background: #25d366;
+  color: #062b18;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer corporativo */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 34px 0;
+  background: #101010;
+  color: var(--muted);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 22px;
+}
+
+.footer__brand img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid var(--brand);
+  margin-bottom: 8px;
+}
+
+.footer__brand p {
+  margin: 0;
+  font-weight: 800;
+  color: #f0e5d1;
+}
+
+.footer__brand small {
+  color: #bcae93;
+}
+
+.footer h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #f0e5d1;
+}
+
+.footer a {
+  display: block;
+  color: #cdbd9f;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.footer__copy {
+  margin-top: 18px;
+  border-top: 1px solid #2b2b2b;
+  padding-top: 14px;
+  text-align: center;
+}
+
+/* Modal de ampliacion de imagenes */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.86);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 20px;
+}
+
+.lightbox.is-open {
+  display: flex;
+}
+
+.lightbox__img {
+  max-width: min(920px, 96vw);
+  max-height: 86vh;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ajustes para tablet */
+@media (max-width: 900px) {
+  .grid--4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid--3,
+  /* Grilla de galeria */
+.gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #141414;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 4%;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .cta-band__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Formulario de reservas adaptable */
+.reservation-form {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Ajustes para movil */
+@media (max-width: 620px) {
+  .section {
+    padding: 68px 0;
+  }
+
+  .grid--4,
+  .grid--3,
+  /* Grilla de galeria */
+.gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hero visual principal */
+.hero {
+    min-height: 84vh;
+  }
+
+  .hero__content {
+    padding: 56px 0;
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 7.8vw, 2.5rem);
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__actions /* Botones base reutilizables */
+.btn {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .gallery-grid img {
+    height: 220px;
+  }
+
+  .trust-photos {
+    grid-template-columns: 1fr;
+  }
+
+  /* Boton flotante de WhatsApp */
+.whatsapp-float {
+    right: 14px;
+    bottom: 14px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+
+  .urgency-bar__inner {
+    min-height: auto;
+    padding: 10px 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .urgency-bar a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
